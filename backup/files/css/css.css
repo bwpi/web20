@@ -1,0 +1,70 @@
+/*body {
+		background-image: url(../img/bg0.png);
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-attachment: fixed;
+	  }*/
+body {	  
+		background: rgba(0,0,10,0.9);
+		background-image: url(../img/bg.png)/*, url(../img/bg0.png)*/;
+		background-repeat: no-repeat/*, no-repeat*/;
+		background-position: 50% 50%/*, top 50px left 50px*/;
+		background-attachment: fixed/*, fixed*/;
+}
+.auth {
+background: rgba(120, 150, 120,.2);
+}
+
+.information {
+	position: absolute;
+	z-index: 1500;
+	width: 50%;
+	height: 50%;
+	bottom: 25%;
+	right: 25%;
+	background-color: rgba(0,0,0,.9);
+}
+
+.icons:hover {
+		animation-name: rotate; 
+		animation-duration: 2s; 
+		animation-iteration-count: infinite; 
+		animation-timing-function: linear; 
+} 
+@keyframes rotate { 
+	from { 
+		transform: rotate(0deg); 
+	} 
+	to { 
+		transform: rotate(360deg); 
+	} 
+}
+
+.tt {
+	 height: 1000px;
+     overflow-y:scroll; 
+} 
+#calendar .navigation .prev, #calendar .navigation .next {
+    background-image: url(../img/nav.png);
+    height: 24px;
+    opacity: 0.9;
+    position: absolute;
+    top: 4px;
+    width: 24px;
+}
+#calendar .navigation .prev {
+    background-position: 0 0;
+    left: 4px;
+}
+#calendar .navigation .next {
+    background-position: -24px 0;
+    right: 4px;
+}
+#calendar .navigation .prev:hover, #calendar .navigation .next:hover {
+    opacity: 1;
+}
+#settings {
+    position: fixed;
+    bottom: 0; 
+    z-index: 999;  
+}

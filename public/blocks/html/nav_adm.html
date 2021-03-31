@@ -1,0 +1,51 @@
+﻿<nav class="fixed-top navbar navbar-expand-md navbar-dark bg-dark shadow-lg p-0" id="nav">
+      <a class="navbar-brand" href="<?php echo $host;?>"><img src="<?php echo $img;?>bg1.png" alt="Админка" width="30em" class="icons"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+    <ul class="navbar-nav mr-auto adms">
+          <li class="nav-item dropdown active">
+          	<a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font style="vertical-align: inherit;">РИС-ы</font></a>
+          	<div class="dropdown-menu bg-dark" aria-labelledby="dropdown1">
+			      <div class="btn-group-vertical btn-block" role="group" aria-label="СТАТГРАД">
+				     ...
+        	  </div>
+       		  </div>
+       	  </li>
+		  <li class="nav-item dropdown active sup">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <font style="vertical-align: inherit;"><img src="<?php echo $img;?>cons.png" alt="Веб-админки" width="20em" ></font></a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="dropdown2">
+          <div class="btn-group-vertical btn-block">
+            ...
+          </div>
+        </div>
+		  </li>
+      <li class="nav-item dropdown active sup">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <font style="vertical-align: inherit;"><img src="<?php echo $img;?>routers.png" alt="Роутеры" width="20em" ></font></a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="dropdown3">
+          <div class="btn-group-vertical btn-block">
+            ...
+          </div>
+        </div>
+      </li> 
+    </ul>
+  </div>
+<div class="custom-control custom-switch">  
+  <input type="checkbox" class="custom-control-input" id="set-checkbox">
+  <label class="custom-control-label" for="set-checkbox">Редактировать</label>
+</div>
+<div class="adms dash"><?php echo $user_name;?></div>
+<div class="adms sup dash">
+  <a class="btn btn-transparent" id="edit_ip" data-toggle="tooltip" data-placement="top" title="Редактирование файла с IP администраторов"><i class="fas fa-plus"></i>IP</a>
+</div>
+<div class="adms dashboard">
+    <a class="btn btn-transparent dash" id="add_users" data-target="#reg" data-placement="top" title="Tooltip on top"><i class="fas fa-user-plus"></i></a>
+    <a class="btn btn-transparent dash" id="users" data-toggle="tooltip" data-placement="top" title="Список пользователей"><i class="fas fa-users"></i></a>
+    <a class="btn btn-transparent dash" id="edit" data-toggle="tooltip" data-placement="top" title="Редактирование файла с пользователями"><i class="fas fa-user-edit"></i></a>
+    <a class="btn btn-transparent dash" id="key" data-toggle="tooltip" data-placement="top" title="Скрыть пароль"><i class="fas fa-key"></i></a>
+    <a class="btn btn-transparent dash logout" href="?exit" data-toggle="tooltip" data-placement="top" title="Выход"><i class="fas fa-user-check text-light"></i></a>
+</div>
+</nav>
