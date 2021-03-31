@@ -175,7 +175,7 @@ class AdminModels extends AppModels{
             return $dir_scan;
         } else {
         	echo 'no dir' . DATA . $dir;
-        }        
+        }
     }
     /*
     *Сканируем каталог на наличие файлов

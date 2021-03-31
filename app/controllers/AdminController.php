@@ -28,8 +28,12 @@ class AdminController extends AppController{
         $model = new AdminModels();
         $fs = new Fs();        
 
-        debug($fs->readfile('users/subjects')->array());
-        debug($fs->setPath(DATA)->setType('txt')->readfile('teach'));
+        // debug($fs->readfile('users/subjects')->array());
+        // debug($fs->setPath(DATA)->setType('txt')->readfile('teach'));
+        // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
+        // debug($fs->scanDirAll('users/schedules')->dir);
+        debug($fs->setPath(STORAGE)->scan());
+
 
 
         $left_menu = $this->action_item;

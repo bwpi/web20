@@ -5,8 +5,9 @@ namespace vendor\core\dataset;
 class Fs {
 
     public $data = [];
-    private $path = STORAGE;
-    private $type = 'json';
+    public $dir = [];
+    protected $path = STORAGE;
+    protected $type = 'json';
     /**
      * Читаем файл JSON
      */
@@ -17,7 +18,61 @@ class Fs {
         } else {
             echo "нет файла для чтения в массив";            
         }
-    }    
+    }
+    
+    /*
+    *Сканируем каталог на наличие файлов
+    */
+    public function scanDir($dir = '', $type = false) {
+        if (is_dir($this->path . $dir)) {
+            $dir_scan = array_slice(scandir($this->path . $dir), 2);
+            if (!$type) {
+                $this->dir = $dir_scan;
+                return $this;
+            } else {
+                $this->dir = [];                
+                foreach ($dir_scan as $key => $value) {
+                    array_push($this->dir, pathinfo($value, PATHINFO_FILENAME));
+                }
+                return $this;                
+            }          
+        } else {
+            echo 'no dir' . $this->path . $dir;
+        }
+    }
+
+    /*
+    *Сканируем все каталоги
+    */
+    public function scanDirAll($dir = '') {
+    	if (is_dir($this->path . $dir)) {
+            $dir_scan = scandir($this->path . $dir);
+            $this->dir = $dir_scan;            
+            return $this;
+        } else {
+        	echo 'no dir' . $this->path . $dir;
+        }
+    }
+
+    /*
+    *Рекурсивное сканирование каталогов
+    */
+    public function scan($dir = '') {
+    	if (is_dir($this->path . $dir)) {
+            $dir_scan = array_slice(scandir($this->path . $dir), 2);
+            foreach ($dir_scan as $key => $value) {
+                $directoryes = [];
+                if (is_file($this->path . $dir . $value)) {
+                    array_push($directoryes, $dir . $value);
+                } else {                    
+                    $directoryes[$value] = $this->scan($this->path . $dir . $value . '/');
+                }                
+            }
+            return $directoryes;
+        } else {
+        	echo 'no dir' . $this->path . $dir;
+        }
+    }
 
     public function setPath($path) {
         $this->path = $path;
