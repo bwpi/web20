@@ -1,0 +1,19 @@
+<div class="navigation">
+    <a class="prev" href="index.php?month=__prev_month__" onclick="$('#calendar').load('plugins/cal.php?month=__prev_month__&_r=' + Math.random()); return false;"></a>
+    <div class="title" >__cal_caption__</div>
+    <a class="next" href="index.php?month=__next_month__" onclick="$('#calendar').load('plugins/cal.php?month=__next_month__&_r=' + Math.random()); return false;"></a>
+</div>
+<table class="table table-responsive-sm table-hover table-bordered table-dark shadow-lg">
+    <tbody>
+    <tr class="bg-warning">
+        <th scope="row" class="weekday bg-primary">Вс</th>
+        <th scope="row" class="weekday">Пн</th>
+        <th scope="row" class="weekday">Вт</th>
+        <th scope="row" class="weekday">Ср</th>
+        <th scope="row" class="weekday">Чт</th>
+        <th scope="row" class="weekday">Пт</th>
+        <th scope="row" class="weekday bg-primary">Сб</th>
+    </tr>
+    __cal_rows__
+</tbody>
+</table>

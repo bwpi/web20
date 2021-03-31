@@ -1,0 +1,73 @@
+body {
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.card {
+    background-color: gray;
+}
+
+.carousel-caption {
+    top: 40%;
+    margin-top: 0;
+}
+
+.carousel-wrap {}
+
+nav#side-bar .active {
+    background-color: #007bff;
+    color: white;
+}
+
+#upPage {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    margin: 0px;
+    bottom: 0px;
+    right: 20px;
+    border-radius: 20px 20px 0 0;
+    background-color: rgba(150, 150, 150, 0.5);
+    box-shadow: 0 0 5px;
+    z-index: 1100;
+}
+
+.btn .shop_num {
+    top: 5px;
+    left: 25%;
+}
+
+.carouselWorks {
+    margin-top: 54px;
+}
+
+.wrap-img img {
+    -webkit-filter: brightness(40%);
+    filter: brightness(40%);
+}
+
+.wrap-img:hover img {
+    -webkit-filter: brightness(100%);
+    filter: brightness(100%);
+}
+
+#content,
+#main {
+    margin-top: 60px;
+}
+
+#msg {
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    z-index: 1100;
+}
+
+.mark {
+    background-color: inherit;
+}
