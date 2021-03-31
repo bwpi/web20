@@ -8,7 +8,7 @@ function debug($arr) {
         echo '<div style="position: relative; overflow: auto; border-radius: 10px; top: 0; left: 0; width:30%; display:block; margin:10px; padding: 10px; background-color: rgba(200,200,250,.9); z-index: 1500">';
         echo '<h4>TEXT</h4>';
         echo '<div style="padding: 10px; background-color: rgba(250,250,250,.9)">';
-        echo '<code>' . $arr . '</code>';
+        echo '<code><b>' . $arr . '</b></code>';
         echo '</div>';
         echo '</div>';
     } else {
