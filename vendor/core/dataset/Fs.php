@@ -58,20 +58,20 @@ class Fs {
     *Рекурсивное сканирование каталогов
     */
     public function scan($dir = '') {
+        $direct = [];
     	if (is_dir($this->path . $dir)) {
-            $dir_scan = array_slice(scandir($this->path . $dir), 2);
-            foreach ($dir_scan as $key => $value) {
-                $directoryes = [];
+            $dir_scan = array_slice(scandir($this->path . $dir), 2);            
+            foreach ($dir_scan as $key => $value) {                
                 if (is_file($this->path . $dir . $value)) {
-                    array_push($directoryes, $dir . $value);
+                    array_push($direct, $dir . $value);
                 } else {                    
-                    $directoryes[$value] = $this->scan($this->path . $dir . $value . '/');
+                    $direct[$value] = $this->scan($this->path . $dir . $value . '/');
                 }                
-            }
-            return $directoryes;
+            }            
         } else {
         	echo 'no dir' . $this->path . $dir;
         }
+        return $direct;
     }
 
     public function setPath($path) {
