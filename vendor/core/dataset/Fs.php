@@ -65,7 +65,7 @@ class Fs {
                 if (is_file($this->path . $dir . $value)) {
                     array_push($direct, $dir . $value);
                 } else {                    
-                    $direct[$value] = $this->scan($this->path . $dir . $value . '/');
+                    $direct[$value] = $this->scan($dir . $value . '/');
                 }                
             }            
         } else {

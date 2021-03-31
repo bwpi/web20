@@ -33,7 +33,8 @@ class AdminController extends AppController{
         // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
         // debug($fs->scanDirAll('users/schedules')->dir);
         debug($fs->setPath(STORAGE)->scan());
-
+        debug('text');
+        debug('text');
 
 
         $left_menu = $this->action_item;
