@@ -29,6 +29,7 @@ class AdminController extends AppController{
         $fs = new Fs();        
 
         debug($fs->readfile('users/subjects')->array());
+        debug($fs->setPath(DATA)->setType('txt')->readfile('teach'));
 
 
         $left_menu = $this->action_item;

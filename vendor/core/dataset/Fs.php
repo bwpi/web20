@@ -4,32 +4,37 @@ namespace vendor\core\dataset;
 
 class Fs {
 
-    public $json = [];
+    public $data = [];
     private $path = STORAGE;
     private $type = 'json';
-
-    /*
-    *Читаем JSON в массив или в JSON fromJsonToArrayOrJson из STORAGE
-    */
+    /**
+     * Читаем файл JSON
+     */
     public function readFile($filename) {
         if (is_file($this->path . $filename . "." . $this->type)) {            
-            $this->json = file_get_contents($this->path . $filename . "." . $this->type);            
+            $this->data = file_get_contents($this->path . $filename . "." . $this->type);            
             return $this;
         } else {
             echo "нет файла для чтения в массив";            
         }
-    }
+    }    
 
-    public function setPathDefault($path) {
+    public function setPath($path) {
         $this->path = $path;
+        return $this;
     }
 
-    public function setFileType($type) {
+    public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     public function array($mode = true) {
-        return $this->json = json_decode($this->json, $mode);
+        return $this->data = json_decode($this->data, $mode);
+    }
+
+    public function json($mode = true) {
+        return $this->data = json_encode($this->data, $mode);
     }
     
 }
