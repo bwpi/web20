@@ -63,9 +63,9 @@ class Fs {
             $dir_scan = array_slice(scandir($this->path . $dir), 2);            
             foreach ($dir_scan as $key => $value) {                
                 if (is_file($this->path . $dir . $value)) {
-                    array_push($direct, $dir . $value);
+                    array_push($direct, $value);
                 } else {                    
-                    $direct[$value] = $this->scan($this->path . $dir . $value . '/');
+                    $direct[$value] = $this->scan($dir . $value . '/');
                 }                
             }            
         } else {
