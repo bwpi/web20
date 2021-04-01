@@ -29,12 +29,11 @@ class AdminController extends AppController{
         $fs = new Fs();        
 
         // debug($fs->readfile('users/subjects')->array());
-        // debug($fs->setPath(DATA)->setType('txt')->readfile('teach'));
+        // debug($fs->setPath(DATA)->setType('txt')->readfile('teach')->data);
         // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
         // debug($fs->scanDirAll('users/schedules')->dir);
-        debug($fs->setPath(STORAGE)->scan());
-
-
+        $dataset = $fs->setPath(DATA . 'upload')->setType('csv')->scan();
+        debug($dataset);
 
         $left_menu = $this->action_item;
         

@@ -60,17 +60,17 @@ class Fs {
     public function scan($dir = '') {
         $direct = [];
     	if (is_dir($this->path . $dir)) {
-            $dir_scan = array_slice(scandir($this->path . $dir), 2);            
+            $dir_scan = array_slice(scandir($this->path . $dir . '/'), 2);            
             foreach ($dir_scan as $key => $value) {                
-                if (is_file($this->path . $dir . $value)) {
+                if (is_file($this->path . $dir . '/' . $value)) {
                     array_push($direct, $value);
                 } else {                    
-                    $direct[$value] = $this->scan($dir . $value . '/');
+                    $direct[$value] = $this->scan($dir . '/' . $value);
                 }                
             }            
         } else {
         	debug('no dir' . $this->path . $dir);
-        }
+        }        
         return $direct;
     }
 
@@ -88,8 +88,8 @@ class Fs {
         return $this->data = json_decode($this->data, $mode);
     }
 
-    public function json($mode = true) {
-        return $this->data = json_encode($this->data, $mode);
+    public function json() {
+        return $this->data = json_encode($this->data);
     }
     
 }
