@@ -10,7 +10,12 @@ class AdminModels extends AppModels{
     public $array_of_csv = [];
     public $dir_scan = [];
     public $item = [];
-    public $objects = [];    
+    public $objects = [];
+    private $path = STORAGE;
+
+    public function setPath($path) {
+      $this->path = $path;
+    }
 
 	  /*
     *Читаем JSON в массив или в JSON fromJsonToArrayOrJson из DATA
@@ -28,11 +33,11 @@ class AdminModels extends AppModels{
     *Читаем JSON в массив или в JSON fromJsonToArrayOrJson из STORAGE
     */
     public function fromJsonToArrayOrJsonStorage($filename, $mode = true) {
-        if (is_file(STORAGE . $filename . ".json")) {            
-            $this->array = json_decode(file_get_contents(STORAGE . $filename . ".json"), $mode);            
+        if (is_file($this->path . $filename . ".json")) {            
+            $this->array = json_decode(file_get_contents($this->path . $filename . ".json"), $mode);            
             return $this->array;
         } else {
-            echo "нет файла" . STORAGE . "$filename.json для чтения в массив";            
+            echo "нет файла" . $this->path . "$filename.json для чтения в массив";            
         }
     }
     
@@ -66,27 +71,28 @@ class AdminModels extends AppModels{
     *Объендиняем трехуровневые массивы, расписание
     */    
     public function mergArrays(...$arrays){
-      $output_array = $arrays[0];
+      $out = $arrays[0];
+
       foreach ($arrays as $key => $array) {       
-        if (!empty($output_array) && !empty($arrays[$key+1])) {            
-            foreach ($output_array as $day => $v1) {
+        if (!empty($out) && !empty($arrays[$key+1])) {            
+            foreach ($out as $day => $v1) {
                 foreach ($v1 as $k1 => $v2) {
                   if (!empty($arrays[$key+1][$day][$k1])) {
-                    if (!$output_array[$day][$k1]) {
-                      $output_array[$day][$k1] = [$arrays[$key+1][$day][$k1]];
-                    } elseif (count($output_array[$day][$k1], COUNT_RECURSIVE) == 2) {
-                      $output_array[$day][$k1] = [$output_array[$day][$k1], $arrays[$key+1][$day][$k1]];
+                    if (!$out[$day][$k1]) {
+                      $out[$day][$k1] = [$arrays[$key+1][$day][$k1]];
+                    } elseif (count($out[$day][$k1], COUNT_RECURSIVE) == 2) {
+                      $out[$day][$k1] = [$out[$day][$k1], $arrays[$key+1][$day][$k1]];
                     } else {
-                      array_push($output_array[$day][$k1], $arrays[$key+1][$day][$k1]);
+                      array_push($out[$day][$k1], $arrays[$key+1][$day][$k1]);
                     }                  
                   }                
                 }
             }
         } else {
-            return empty($output_array) ? $arrays[$key+1] : $output_array;
+            return empty($out) ? $arrays[$key+1] : $out;
         }        
       }     
-      return $output_array;
+      return $out;
     }
     /**
      * Функция рекурсивный обработчик
@@ -102,26 +108,26 @@ class AdminModels extends AppModels{
     *Вносим изменения в JSON файл
     */
     public function setAjaxToJson($filename, $data, $set='') {
-    	$path = explode('/', $set);    	
-    	if (count($path)==3) {
-    		if (is_file(DATA . $filename. ".json")) {
-				$file_data = $this->fromJsonToArrayOrJson($filename, false);
-				$file_data->$path[0]->$path[1]->$path[2] = $data;			
-				file_put_contents(DATA . $filename. ".json", json_encode($file_data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT)); //, JSON_UNESCAPED_UNICODE
-				unset($file_data);
-			} else {
-			    echo "нет файла $filename.json для записи";
-			}
-    	} else {    		
-    		if (is_file(DATA . $filename. ".json")) {
-				$file_data = $this->fromJsonToArrayOrJson($filename);				
-				$file_data[$path[0]][$path[1]] = $data;				
-				file_put_contents(DATA . $filename. ".json", json_encode($file_data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
-				unset($file_data);
-			} else {
-			    echo "нет файла $filename.json для записи";
-			}
-    	}
+        $path = explode('/', $set);    	
+        if (count($path)==3) {
+            if (is_file(DATA . $filename. ".json")) {
+                $file_data = $this->fromJsonToArrayOrJson($filename, false);
+                $file_data->$path[0]->$path[1]->$path[2] = $data;			
+                file_put_contents(DATA . $filename. ".json", json_encode($file_data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT)); //, JSON_UNESCAPED_UNICODE
+                unset($file_data);
+            } else {
+                  echo "нет файла $filename.json для записи";
+            }
+        } else {    		
+            if (is_file(DATA . $filename. ".json")) {
+            $file_data = $this->fromJsonToArrayOrJson($filename);				
+            $file_data[$path[0]][$path[1]] = $data;				
+            file_put_contents(DATA . $filename. ".json", json_encode($file_data, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
+            unset($file_data);
+        } else {
+            echo "нет файла $filename.json для записи";
+        }
+        }
     }	
 	/*
     *Вносим изменения в JSON файл
@@ -182,18 +188,18 @@ class AdminModels extends AppModels{
     */
     public function scanDir($dir = '', $type = false) {
     	  if (is_dir($dir)) {
-          $dir_scan = array_slice(scandir($dir), 2);
-          if (!$type) {
-            return $dir_scan;
-          } else {
-            $out = [];
-            foreach ($dir_scan as $key => $value) {
-              array_push($out, pathinfo($value, PATHINFO_FILENAME));
+            $dir_scan = array_slice(scandir($dir), 2);
+            if (!$type) {
+              return $dir_scan;
+            } else {
+              $out = [];
+              foreach ($dir_scan as $key => $value) {
+                array_push($out, pathinfo($value, PATHINFO_FILENAME));
+              }
+              return $out;
             }
-            return $out;
-          }          
         } else {
-        	echo 'no dir' . $dir;
+        	  echo 'no dir' . $dir;
         }
     }
 

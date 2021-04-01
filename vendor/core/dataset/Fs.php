@@ -16,7 +16,7 @@ class Fs {
             $this->data = file_get_contents($this->path . $filename . "." . $this->type);            
             return $this;
         } else {
-            echo "нет файла для чтения в массив";            
+            echo "нет данных - {$filename} для чтения в массив";            
         }
     }
     
@@ -69,7 +69,7 @@ class Fs {
                 }                
             }            
         } else {
-        	debug('no dir' . $this->path . $dir);
+        	echo 'no dir' . $this->path . $dir;
         }        
         return $direct;
     }
