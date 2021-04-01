@@ -69,7 +69,7 @@ class Fs {
                 }                
             }            
         } else {
-        	echo 'no dir' . $this->path . $dir;
+        	debug('no dir' . $this->path . $dir);
         }
         return $direct;
     }
