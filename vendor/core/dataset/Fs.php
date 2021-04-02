@@ -78,7 +78,8 @@ class Fs {
             }            
         } else {
         	echo 'no dir' . $path;
-        }        
+        }
+        ksort($direct, SORT_STRING);
         return $direct;
     }
 
