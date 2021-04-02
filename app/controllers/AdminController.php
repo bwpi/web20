@@ -18,22 +18,15 @@ class AdminController extends AppController{
         * Проверка ip адреса, загрузка профиля, группа допуска
         */
         Auth::access(['admin']);
+        $this->layout = 'material';
         $this->action_item = $this->getMenuSidebar();        
-    }    
+    }
 
     public function indexAction() {
         /*
         * Загрузка данных из модели
         */
-        $model = new AdminModels();
-        $fs = new Fs();        
-
-        // debug($fs->readfile('users/subjects')->array());
-        // debug($fs->setPath(DATA)->setType('txt')->readfile('teach')->data);
-        // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
-        // debug($fs->scanDirAll('users/schedules')->dir);
-        $dataset = $fs->setPath(DATA . 'upload')->setType('csv')->scan();
-        debug($dataset);
+        $model = new AdminModels();        
 
         $left_menu = $this->action_item;
         
@@ -50,7 +43,7 @@ class AdminController extends AppController{
         $data = $model->mergArrays(...$sched);
         $objects = $model->getUserSettings('objects', $rule);
         $cabinet = 'физики';
-        $this->layout = 'material';
+        
         $this->setData(compact('left_menu', 'title', 'data', 'objects', 'cabinet'));
     }
 
@@ -98,7 +91,7 @@ class AdminController extends AppController{
             die;
         }        
         
-        $this->layout = 'material';        
+                
         $this->setData(compact('left_menu', 'title', 'main', 'set', 'auth', 'ip', 'data', 'objects', 'files_uploaded'));
     }
 
@@ -128,7 +121,7 @@ class AdminController extends AppController{
         $set = Auth::$profile->set;
         $auth = Auth::$profile->auth;        
         
-        $this->layout = 'material';        
+                
         $this->setData(compact('left_menu', 'title', 'main', 'set', 'auth', 'array'));
     }
 
@@ -166,7 +159,7 @@ class AdminController extends AppController{
             die;
         }
 
-        $this->layout = 'material';
+        
         $this->setData(compact('left_menu', 'theme_plane', 'key_table_col'));
     }
 
@@ -215,7 +208,7 @@ class AdminController extends AppController{
             $theme_plane = $model->parseCsv($data, $key_table_col);
         }
 
-        $this->layout = 'material';
+        
         $msg = (isset($msg)) ? $msg : '';
         $this->setData(compact('left_menu', 'msg', 'theme_plane', 'key_table_col', 'files_uploaded'));
     }
@@ -265,7 +258,7 @@ class AdminController extends AppController{
             $msg = $this->response('Файл для загрузки отсутствует, поворите попытку', 'danger');
         }        
         $data = (isset($data)) ? $data : '';
-        $this->layout = 'material';
+        
         $this->setData(compact('left_menu', 'msg', 'files_uploaded', 'data', 'key_table_col'));
         
     }
@@ -297,25 +290,33 @@ class AdminController extends AppController{
             
         }
         
-        $this->layout = 'material';
+        
         $this->setData(compact('left_menu', 'out', 'msg', 'test'));
         
     }
 
-    public function menuAction(){
+    public function menuAction() {
         $model = new AdminModels();
              
         $left_menu = $this->action_item;
         $item = $model->getMenuItems('settings/item');
         $objects = $model->getUserSettings('objects', Auth::$rule);
-        $this->layout = 'material';
+        
         $msg = (isset($msg)) ? $msg : '';
         $this->setData(compact('left_menu', 'msg', 'item', 'objects'));
     }
     
-    public function funcAction()
-    {
-        # code...
+    public function editorAction() {
+        $fs = new Fs();
+        $left_menu = $this->action_item;
+
+        // debug($fs->readfile('users/subjects')->array());
+        // debug($fs->setPath(DATA)->setType('txt')->readfile('teach')->data);
+        // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
+        // debug($fs->scanDirAll('users/schedules')->dir);
+        $dataset = $fs->scan();
+        debug($dataset);
+        $this->setData(compact('left_menu', 'dataset'));
     }
 
 }

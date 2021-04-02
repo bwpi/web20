@@ -59,17 +59,25 @@ class Fs {
     */
     public function scan($dir = '') {
         $direct = [];
-    	if (is_dir($this->path . $dir)) {
-            $dir_scan = array_slice(scandir($this->path . $dir . '/'), 2);            
-            foreach ($dir_scan as $key => $value) {                
-                if (is_file($this->path . $dir . '/' . $value)) {
-                    array_push($direct, $value);
+        $path = $this->path . $dir;
+    	if (is_dir($path)) {
+            $dir_scan = array_slice(scandir($path . '/'), 2);            
+            foreach ($dir_scan as $key => $value) {
+                $file = $path . '/' . $value;
+                if (is_file($file)) {                    
+                    $direct = [
+                        'file' => $value,
+                        ['type' => mime_content_type($file),
+                        'size' => round(stat($file)[7]/1024, 2),
+                        'atime' => date("d F Y H:i:s.", stat($file)[8]),
+                        'mtime' => date("d F Y H:i:s.", stat($file)[9])]
+                    ];
                 } else {                    
                     $direct[$value] = $this->scan($dir . '/' . $value);
                 }                
             }            
         } else {
-        	echo 'no dir' . $this->path . $dir;
+        	echo 'no dir' . $path;
         }        
         return $direct;
     }

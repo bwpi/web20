@@ -11,6 +11,6 @@
           <td contenteditable="true"><?=$item;?></td>
         <?php endforeach;?>
       </tr>
-    <?php endforeach;?>      
+    <?php endforeach;?>
   </tbody>
 </table>
