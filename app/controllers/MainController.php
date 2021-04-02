@@ -58,12 +58,13 @@ class MainController extends AppController{
         $profile = Auth::$profile;
         $this->view = $profile->rules;
         $ip = $rule . ' - ' . REMOTE_ADDR;
+        $user_ip = [$rule, REMOTE_ADDR];
         $title = $profile->title;
         $main = $profile->main;
         $set = $profile->set;
         $auth = $profile->auth;
         $rules = $profile->rules;
-        $navbar = $this->loadView('_navbar', compact('menu', 'ip'));
+        $navbar = $this->loadView('_navbar', compact('menu', 'ip', 'user_ip'));
         $left_bar = $this->loadView('_left_bar', compact('menu', 'rules'));
         $content = $this->loadView('_main', compact('menu'));
         $this->setData(compact('title', 'main', 'set', 'auth', 'ip', 'menu', 'rules', 'navbar', 'left_bar', 'content'));

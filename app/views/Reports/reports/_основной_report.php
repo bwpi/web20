@@ -29,11 +29,11 @@ extract($post_in);
 				<?php $i++;?>
 				<tr>	  	    		
 		  	    	<th scope="row" class="alert <?=$message[3]?>"><?=$level1[0]?></th>		  	    	
-		  	    	<td class="<?= ($_POST['quarter'] == '1') ? 'bg-success' : '';?>"><?php debug($rep[1][$i][1]);?></td>
-		  	    	<td class="<?= ($_POST['quarter'] == '2') ? 'bg-success' : '';?>"><?php debug($rep[2][$i][1]);?></td>
-		  	    	<td class="<?= ($_POST['quarter'] == '3') ? 'bg-success' : '';?>"><?php debug($rep[3][$i][1]);?></td>
-		  	    	<td class="<?= ($_POST['quarter'] == '4') ? 'bg-success' : '';?>"><?php debug($rep[4][$i][1]);?></td>
-		  	    	<td class="<?= ($_POST['quarter'] == 'year') ? 'bg-success' : '';?>"><?php debug($rep['year'][$i][1]);?></td>
+		  	    	<td class="<?= ($_POST['quarter'] == '1') ? 'bg-success' : '';?>"><?= $rep[1][$i][1]?></td>
+		  	    	<td class="<?= ($_POST['quarter'] == '2') ? 'bg-success' : '';?>"><?= $rep[2][$i][1]?></td>
+		  	    	<td class="<?= ($_POST['quarter'] == '3') ? 'bg-success' : '';?>"><?= $rep[3][$i][1]?></td>
+		  	    	<td class="<?= ($_POST['quarter'] == '4') ? 'bg-success' : '';?>"><?= $rep[4][$i][1]?></td>
+		  	    	<td class="<?= ($_POST['quarter'] == 'year') ? 'bg-success' : '';?>"><?= $rep['year'][$i][1]?></td>
 		  	    </tr>
 	  	    <?php endforeach;?>
 		</tbody>		

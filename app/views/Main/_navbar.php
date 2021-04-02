@@ -91,25 +91,34 @@
                 </li>
                 <?php endif;?>
 
-                <a class="nav-link btn btn-transparent" data-toggle="modal" data-target="#calend">
-                    <font style="vertical-align: inherit;">Календарь</font>
-                </a>
-                <a class="nav-link btn btn-transparent rassp1" data-toggle="modal" data-target="#ras">
-                    <font style="vertical-align: inherit;">Расписание</font>
-                </a>
-
                 <?php if($rules !== 'study'):?>
-                <a class="nav-link btn btn-transparent historyAPI report" id="report" href="/reports">
-                    <font style="vertical-align: inherit;">Отчеты</font>
-                </a>
-                <a class="nav-link btn btn-transparent bg-setting">
-                    <font style="vertical-align: inherit;">Настройки</font>
-                </a>
+                <li class="nav-item dropdown active sup">
+                    <a class="nav-link dropdown-toggle btn bg-transparent" href="#" id="dropdown4"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <font style="vertical-align: inherit;">Настройки</font>
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdown4">
+                        <div class="btn-group-vertical btn-block">
+                            <a class="nav-link btn btn-transparent" data-toggle="modal" data-target="#calend">
+                                <font style="vertical-align: inherit;">Календарь</font>
+                            </a>
+                            <a class="nav-link btn btn-transparent rassp1" data-toggle="modal" data-target="#ras">
+                                <font style="vertical-align: inherit;">Расписание</font>
+                            </a>
+                            <a class="nav-link btn btn-transparent historyAPI report" id="report" href="/reports">
+                                <font style="vertical-align: inherit;">Отчеты</font>
+                            </a>
+                            <a class="nav-link btn btn-transparent bg-setting">
+                                <font style="vertical-align: inherit;">Настройки</font>
+                            </a>
+                            <a class="nav-link btn btn-transparent" href="/reports">
+                                <font style="vertical-align: inherit;">Отчеты</font>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <a class="nav-link btn btn-transparent" href="/admin">
                     <font style="vertical-align: inherit;">Настройки</font>
-                </a>
-                <a class="nav-link btn btn-transparent" href="/reports">
-                    <font style="vertical-align: inherit;">Отчеты</font>
                 </a>
                 <?php endif;?>
             </ul>
@@ -131,11 +140,9 @@
                 </a>
             </ul>
         </div>
-        <div class="alert alert-info p-1 mx-1">
-            <?=$ip?>
-        </div>
+        <h6><?=$user_ip[0]?> <span class="badge bg-secondary"><?=$user_ip[1]?></span></h6>
 
-        <form class="form-horizontal navi_dash search" role="form" action="https://yandex.ru/search/" role="search"
+        <form class="mx-1 form-horizontal navi_dash search" role="form" action="https://yandex.ru/search/" role="search"
             aria-label="Поиск в интернете">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Поиск Яндекса" autocomplete="off" autocorrect="off"
@@ -159,7 +166,7 @@
             <?php endif;?>
         </div>
     </nav>
-    
+
     <!-- Button trigger modal -->
     <!-- Календарь -->
     <div class="modal fade" id="calend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -193,4 +200,3 @@
             </div>
         </div>
     </div>
-    

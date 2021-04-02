@@ -12,20 +12,24 @@ class AdminModels extends AppModels{
     public $item = [];
     public $objects = [];
     private $path = STORAGE;
+    private $type = 'json';
 
     public function setPath($path) {
       $this->path = $path;
+    }
+    public function setType($type) {
+      $this->type = $type;
     }
 
 	  /*
     *Читаем JSON в массив или в JSON fromJsonToArrayOrJson из DATA
     */
     public function fromJsonToArrayOrJson($filename, $mode = true) {
-        if (is_file(DATA . $filename . ".json")) {
-            $this->array = json_decode(file_get_contents(DATA . $filename . ".json"), $mode);            
+        if (is_file(DATA . $filename . ".{$this->type}")) {
+            $this->array = json_decode(file_get_contents(DATA . $filename . ".{$this->type}"), $mode);            
             return $this->array;
         } else {
-            echo "нет файла" . DATA . "$filename.json для чтения в массив";            
+            echo "нет файла" . DATA . "$filename.{$this->type} для чтения в массив";            
         }
     }
 
@@ -33,11 +37,11 @@ class AdminModels extends AppModels{
     *Читаем JSON в массив или в JSON fromJsonToArrayOrJson из STORAGE
     */
     public function fromJsonToArrayOrJsonStorage($filename, $mode = true) {
-        if (is_file($this->path . $filename . ".json")) {            
-            $this->array = json_decode(file_get_contents($this->path . $filename . ".json"), $mode);            
+        if (is_file($this->path . $filename . ".{$this->type}")) {            
+            $this->array = json_decode(file_get_contents($this->path . $filename . ".{$this->type}"), $mode);            
             return $this->array;
         } else {
-            echo "нет файла" . $this->path . "$filename.json для чтения в массив";            
+            echo "нет файла" . $this->path . "$filename.{$this->type} для чтения в массив";            
         }
     }
     

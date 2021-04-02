@@ -313,7 +313,7 @@ class AdminController extends AppController{
         $this->setData(compact('left_menu', 'msg', 'item', 'objects'));
     }
     
-    public function funcAction(Type $var = null)
+    public function funcAction()
     {
         # code...
     }
