@@ -4,7 +4,7 @@ function renderFiles($dataset) {
     echo '<ul class="ml-3 list-group p-1">';        
     foreach ($dataset as $key => $value) {        
         if(gettype($dataset[$key]) !== 'array'){
-            echo "<li class='list-group-item text-info'><i class='fa fa-file-text' aria-hidden='true'></i> {$value}</li>";
+            echo "<li class='list-group-item text-info'><a href='/{$key}/{$value}'><i class='fa fa-file-text' aria-hidden='true'></i> {$value}</a></li>";
         } else {
             echo "<li class='list-group-item'>";
             echo "<div class='h5'><i class='fa fa-folder-open' aria-hidden='true'></i> {$key}</div>";
