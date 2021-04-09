@@ -309,6 +309,7 @@ class AdminController extends AppController{
     public function editorAction() {
         $fs = new Fs();
         $left_menu = $this->action_item;
+        $title = 'Редактор файлов';
 
         // debug($fs->readfile('users/subjects')->array());
         // debug($fs->setPath(DATA)->setType('txt')->readfile('teach')->data);
@@ -316,7 +317,7 @@ class AdminController extends AppController{
         // debug($fs->scanDirAll('users/schedules')->dir);
         $dataset = $fs->scan();
         debug($dataset);
-        $this->setData(compact('left_menu', 'dataset'));
+        $this->setData(compact('left_menu', 'dataset', 'title'));
     }
 
 }

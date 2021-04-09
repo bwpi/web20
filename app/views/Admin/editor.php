@@ -1,18 +1,19 @@
 <?php
 
-function renderFiles($dataset) {    
+function renderFiles($dataset, $in = '') {
+    echo $in;
     echo '<ul class="ml-3 list-group p-1">';
-    foreach ($dataset as $key => $value) {
-        if(gettype($value) !== 'array'){            
-            echo "<li class='list-group-item text-info'><a class='btn btn-info' href='{$value}'><i class='mr-1 fa fa-file-text' aria-hidden='true'></i>{$value}</a></li>";
+    foreach ($dataset as $key => $value) {        
+        if(gettype($value) !== 'array'){
+            echo "<li class='list-group-item text-info'><a class='btn btn-info' href='?id={$in}/{$value}'><i class='mr-1 fa fa-file-text' aria-hidden='true'></i>{$value}</a></li>";
         } else {            
             echo "<li class='list-group-item'>";
             echo "<div class='h5'><i class='mr-1 fa fa-folder-open' aria-hidden='true'></i>{$key}</div>";
-            renderFiles($value);
+            renderFiles($value, $in . '/' . $key);
             echo "</li>";
         }
     }
-    echo '</ul>';
+    echo '</ul>';    
 }
 
 ?>
