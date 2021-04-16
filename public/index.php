@@ -31,7 +31,9 @@ Router::add('^main/(?P<alias>[a-z-]+)$', ['controller' => 'Main', 'action' => 'i
 /**
  * правила по умолчанию
  */
-Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+Router::add('^$', ['controller' => 'Public', 'action' => 'index']);
+// Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 Router::dispatch($query);
