@@ -327,4 +327,11 @@
     "classes": "btn btn-light",
     "category": "sdo",
     "rule": ""
+}, {
+    "title": "Сайт И.В. Журавлева",
+    "href": "http://bwpi.ru",
+    "target": "_blank",
+    "classes": "btn btn-light",
+    "category": "sdo",
+    "rule": ""
 }]

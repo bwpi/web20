@@ -315,8 +315,11 @@ class AdminController extends AppController{
         // debug($fs->setPath(DATA)->setType('txt')->readfile('teach')->data);
         // debug($fs->setPath(STORAGE)->scanDir('users/schedules', true)->dir);
         // debug($fs->scanDirAll('users/schedules')->dir);
-        $dataset = $fs->scan();
-        debug($dataset);
+
+        if ($this->isGet('path')) {
+            debug($fs->read($this->isGet('path'))->array());
+        }
+        $dataset = $fs->scan();        
         $this->setData(compact('left_menu', 'dataset', 'title'));
     }
 

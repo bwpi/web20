@@ -27,6 +27,9 @@ abstract class Controller {
     public function isAjax(){
         return isset($_SERVER['HTTP_X_REQUESTED_WITH'])&&$_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';        
     }
+    public function isGet($id){
+        return $_GET[$id];        
+    }
 
     public function loadView($view, $vars = []){
         extract($vars);        

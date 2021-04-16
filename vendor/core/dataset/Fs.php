@@ -19,6 +19,18 @@ class Fs {
             echo "нет данных - {$filename} для чтения в массив";            
         }
     }
+
+    /**
+     * Читаем файл
+     */
+    public function read($filename) {
+        if (is_file($this->path . $filename)) {            
+            $this->data = file_get_contents($this->path . $filename);            
+            return $this;
+        } else {
+            echo "нет данных - {$filename} для чтения в массив";            
+        }
+    }
     
     /*
     *Сканируем каталог на наличие файлов
@@ -66,11 +78,15 @@ class Fs {
                 $file = $path . '/' . $value;
                 if (is_file($file)) {
                     // $direct = $value;
-                    array_push($direct, $value);
-                        // ['type' => mime_content_type($file),
-                        // 'size' => round(stat($file)[7]/1024, 2),
-                        // 'atime' => date("d F Y H:i:s.", stat($file)[8]),
-                        // 'mtime' => date("d F Y H:i:s.", stat($file)[9])]
+                    $data = [
+                        'name' => $value,
+                        'type' => mime_content_type($file),
+                        'size' => round(stat($file)[7]/1024, 2),
+                        'atime' => date("d F Y H:i:s", stat($file)[8]),
+                        'mtime' => date("d F Y H:i:s", stat($file)[9])
+                    ];
+                    // implode('/', $data);
+                    array_push($direct, implode('/', $data));
                     
                 } else {                    
                     $direct[$value] = $this->scan($dir . '/' . $value);
