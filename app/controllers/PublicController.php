@@ -6,7 +6,7 @@ class PublicController extends AppController{
         parent::__construct($route);        
     }    
     public function indexAction() {
-        
+        $this->layout = '';        
     }
 }
 

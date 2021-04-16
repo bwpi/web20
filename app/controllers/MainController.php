@@ -46,13 +46,14 @@ class MainController extends AppController{
         * Обработка AJAX запроса
         */
         if ($this->isAjax()) {
-            if (!empty($_POST['ajax_time'])) {
-                // echo json_encode($this->data);                
-            } else {            
-                $this->loadView($this->view, compact('array'));                
-            }
-            die;
-        }
+            return $this->loadView($this->view, compact('array'));
+            // if (!empty($_POST['ajax_time'])) {
+            //     // echo json_encode($this->data);                
+            // } else {            
+            //     $this->loadView($this->view, compact('array'));                
+            // }
+            // die;
+        }        
         
         $rule = Auth::$rule;
         $profile = Auth::$profile;
